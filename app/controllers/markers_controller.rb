@@ -13,6 +13,7 @@ class MarkersController < ApplicationController
   # GET /markers/new
   def new
     @marker = Marker.new
+    @subcategories = Subcategory.all
   end
 
   # GET /markers/1/edit
@@ -22,11 +23,10 @@ class MarkersController < ApplicationController
   # POST /markers or /markers.json
   def create
     @marker = Marker.new(marker_params)
-
+    @markers = Marker.all
     respond_to do |format|
       if @marker.save
-        format.html { redirect_to @marker, notice: "Marker was successfully created." }
-        format.json { render :show, status: :created, location: @marker }
+        format.js { render nothing: true, notice: "Marker was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @marker.errors, status: :unprocessable_entity }
