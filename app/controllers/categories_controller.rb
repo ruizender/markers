@@ -19,6 +19,19 @@ class CategoriesController < ApplicationController
   def edit
   end
 
+
+
+  def api
+    categories = Category.all.order(name: :desc)
+    @api_categories= categories.map{|category|{
+      id: category.id,
+      name: category.name,
+      subcategories: category.subcategories{|subcategory| subcategory.name}
+      # marks: category.subcategories{|subcategory| subcategory.name}.map{|mark| mark.name}
+      }}
+      render json: @api_categories
+  end
+
   # POST /categories or /categories.json
   def create
     @category = Category.new(category_params)

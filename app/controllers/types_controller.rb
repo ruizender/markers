@@ -4,6 +4,7 @@ class TypesController < ApplicationController
   # GET /types or /types.json
   def index
     @types = Type.all
+    @graphic = Type.group(:marker_id).count
   end
 
   # GET /types/1 or /types/1.json
