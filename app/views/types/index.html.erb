@@ -2,7 +2,8 @@
 
 <h1>Types</h1>
 
-<table>
+<%= pie_chart @graphic %>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -26,7 +27,6 @@
 
 <br>
 
-<%= link_to 'New Type', new_type_path %>
+<%= link_to 'New Type', new_type_path, class:"btn btn-secondary text-light"  %>
 
-<%= pie_chart @graphic %>
 

@@ -26,9 +26,10 @@ class CategoriesController < ApplicationController
     @api_categories= categories.map{|category|{
       id: category.id,
       name: category.name,
-      subcategories: category.subcategories{|subcategory| subcategory.name}
-      # marks: category.subcategories{|subcategory| subcategory.name}.map{|mark| mark.name}
+      subcategories: category.subcategories{|subcategory| subcategory.name},
+      marks: category.subcategories.map {|m| m.markers.each {|markers| markers.name}},
       }}
+    
       render json: @api_categories
   end
 
